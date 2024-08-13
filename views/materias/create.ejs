@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Materia</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+  <div class="container my-5">
+    <h1 class="text-center mb-4">Crear Materia</h1>
+    <form action="/materias/create" method="post" class="needs-validation" novalidate>
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" required>
+        <div class="invalid-feedback">Por favor, ingrese el nombre de la materia.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="créditos">Créditos:</label>
+        <input type="number" id="créditos" name="créditos" class="form-control" required>
+        <div class="invalid-feedback">Por favor, ingrese los créditos.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" class="form-control" rows="3" required></textarea>
+        <div class="invalid-feedback">Por favor, ingrese la descripción.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="id_area">Área:</label>
+        <select id="id_area" name="id_area" class="form-control" required>
+          <% areas.forEach(area => { %>
+            <option value="<%= area.id %>"><%= area.nombre %></option>
+          <% }); %>
+        </select>
+        <div class="invalid-feedback">Por favor, seleccione un área.</div>
+      </div>
+
+      <button type="submit" class="btn btn-success btn-block">Crear Materia</button>
+    </form>
+    <div class="text-center mt-4">
+      <a href="/materias" class="btn btn-primary">Volver a la lista de materias</a>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Bootstrap form validation
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+</body>
+</html>
